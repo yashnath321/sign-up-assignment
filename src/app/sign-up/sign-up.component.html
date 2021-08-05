@@ -1,0 +1,56 @@
+<div class="signup-heading">
+  <h2>Sign Up</h2>
+</div>
+<div class="signup-form">
+  <form [formGroup]="signUpForm" class="form-group" (ngSubmit)="signUp()">
+    <div>
+      <label>First Name</label>
+      <input class="form-control" formControlName="firstName" type="text" />
+    </div>
+    <div>
+      <label>Last Name</label>
+      <input class="form-control" formControlName="LastName" type="text" />
+    </div>
+    <div>
+      <label>User Name</label>
+      <input
+        class="form-control"
+        formControlName="userName"
+        type="text"
+        (blur)="checkUserName()"
+      />
+      <div class="alert alert-danger" *ngIf="userNameError">
+        {{ userNameError }}
+      </div>
+    </div>
+    <div>
+      <label>Password</label>
+      <input
+        class="form-control"
+        formControlName="password"
+        type="text"
+        (blur)="checkPassword()"
+      />
+      <div class="alert alert-danger" *ngIf="passwordError">
+        {{ passwordError }}
+      </div>
+    </div>
+    <br />
+    <div class="signup-button">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="signUpForm.status === 'INVALID'"
+      >
+        Sign up
+      </button>
+    </div>
+    <br />
+    <div
+      *ngIf="successMessage"
+      class="signup-success"
+    >
+      {{ successMessage }}
+    </div>
+  </form>
+</div>
